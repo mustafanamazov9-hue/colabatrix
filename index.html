@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COLABA: кофейные тоники, cold brew и шоты</title>
+<meta name="description" content="COLABA: кофейные тоники без сахара, cold brew и имбирные шоты. 4000+ точек продаж, 18 вкусов тоников, 15 дистрибьюторов. Россия, Казахстан, экспорт.">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="COLABA">
+<meta property="og:title" content="COLABA | COFFEE DRINKS & MORE">
+<meta property="og:description" content="Кофейные тоники без сахара, cold brew и имбирные шоты. Открываем новые регионы: получите условия для партнёров.">
+<!-- ЗАПОЛНИТЬ после публикации: адрес сайта и картинка превью 1200×630
+<meta property="og:url" content="[АДРЕС САЙТА]">
+<meta property="og:image" content="[АДРЕС САЙТА]/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+-->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cpath d='M22 9.500A8.500 8.500 0 1 0 22 22.500' fill='none' stroke='%234fc832' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&family=Sofia+Sans+Extra+Condensed:ital,wght@1,800;1,900&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ---------- Токены: цвета, шрифты, отступы ---------- */
+:root{
+  --ink:#0a0a0a; --paper:#fff; --mist:#ececec; --dim:#575757;
+  --trix:#4fc832;
+  --green:oklch(40% .13 145); --rasp:oklch(38% .15 12); --violet:oklch(33% .14 310); --sun:oklch(86% .17 92);
+  --fd:'Sofia Sans Extra Condensed','Arial Narrow',Impact,sans-serif;
+  --fb:'Exo 2',Arial,sans-serif;
+  --gut:clamp(12px,1.7vw,26px); --gap:8px; --hdr:60px;
+  --sec:clamp(64px,9vw,136px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--hdr);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:500 16px/1.5 var(--fb);overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--trix);outline-offset:3px}
+.skip{position:fixed;left:8px;top:-80px;z-index:100;background:var(--paper);padding:10px 14px}
+.skip:focus{top:8px}
+
+/* ---------- Типографика ---------- */
+.d{font:italic 900 1em/.84 var(--fd);text-transform:uppercase;letter-spacing:-.005em}
+.h2{font-size:clamp(68px,12.5vw,190px)}
+.cap{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.lead{font-size:clamp(17px,1.5vw,22px);line-height:1.45;max-width:38ch}
+.todo{color:var(--dim)}
+.wrap{padding-inline:var(--gut)}
+.sec{padding-block:var(--sec)}
+
+/* ---------- Кнопки: скошенные плашки ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border:0;cursor:pointer;
+  background:var(--ink);color:var(--paper);text-decoration:none;font:italic 900 26px/1 var(--fd);text-transform:uppercase;letter-spacing:.01em;
+  transform:skewX(-9deg);transition:transform .25s var(--ease),background .2s,color .2s}
+.btn>*{transform:skewX(9deg)}
+.btn:hover{transform:skewX(-9deg) translateY(-3px)}
+.btn--paper{background:var(--paper);color:var(--ink)}
+.btn--trix{background:var(--trix);color:var(--ink)}
+.btn--sm{min-height:38px;padding:0 18px;font-size:20px}
+.btn--lg{min-height:64px;padding:0 40px;font-size:34px}
+.box{display:inline-flex;align-items:center;gap:22px;min-height:50px;padding:0 18px;border:1px solid currentColor;background:none;cursor:pointer;text-decoration:none;
+  font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;transition:background .2s,color .2s}
+.box:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.box svg{width:12px;height:12px}
+
+/* ---------- Шапка ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;height:var(--hdr);background:#000;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-inline:var(--gut)}
+.logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:italic 900 34px/1 var(--fd);letter-spacing:.01em}
+.logo i{font:italic 900 15px/1 var(--fd);background:var(--trix);color:#000;padding:3px 6px 2px;transform:skewX(-9deg)}
+.nav{display:flex;align-items:center;gap:clamp(18px,2.6vw,40px)}
+.nav a{text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.nav a:not(.btn):hover{text-decoration:underline;text-underline-offset:6px}
+.burger{display:none;width:44px;height:44px;margin-right:-8px;background:none;border:0;cursor:pointer;position:relative}
+.burger span{position:absolute;right:8px;height:3px;background:#fff;transition:transform .3s var(--ease),width .3s}
+.burger span:nth-child(1){top:14px;width:28px}.burger span:nth-child(2){top:21px;width:20px}.burger span:nth-child(3){top:28px;width:28px}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){width:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- Герой: слайдер постеров ---------- */
+/* герой закреплён, пока страница прокручивает «запас» под ним: за это время слайды сменяются */
+.hero{background:#000}
+.hero::after{content:"";display:block;height:calc((var(--n,1) - 1)*70svh)}
+.hero__pin{position:sticky;top:0;padding-top:var(--hdr);background:#000}
+.hs{display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;position:relative}
+.hs::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;position:relative;overflow:hidden;isolation:isolate;color:#fff;background:var(--bg);
+  height:calc(100svh - var(--hdr) - 54px);min-height:560px;max-height:900px;
+  display:grid;grid-template-rows:auto auto 1fr;padding:22px var(--gut) 56px}
+.slide::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:radial-gradient(60% 55% at 62% 58%,rgb(255 255 255/.26),transparent 70%),repeating-linear-gradient(-38deg,rgb(255 255 255/.045) 0 34px,transparent 34px 68px)}
+.slide__ghost{position:absolute;z-index:-1;left:-2vw;bottom:-.14em;font-size:min(52vw,74svh);color:transparent;-webkit-text-stroke:2px rgb(255 255 255/.16);white-space:nowrap;pointer-events:none}
+.slide__photo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.slide--photo::before{z-index:-1;background:linear-gradient(180deg,rgb(0 0 0/.82) 0,rgb(0 0 0/.3) 40%,rgb(0 0 0/.05) 60%,rgb(0 0 0/.85) 100%)}
+.row__art--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.row:hover .row__art--photo img{transform:scale(1.04)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.ph:hover img{transform:scale(1.06)}
+.tag{display:inline-block;align-self:start;justify-self:start;margin-left:6px;background:var(--trix);color:#000;padding:6px 12px 5px;font:italic 800 22px/1 var(--fd);text-transform:uppercase;letter-spacing:.02em;transform:skewX(-9deg)}
+.slide__title{font-size:23vw;margin-top:10px;text-shadow:0 6px 0 rgb(0 0 0/.18)}
+.slide__cta{display:flex;flex-wrap:wrap;align-items:center;align-self:end;gap:14px 18px;margin-top:16px}
+.stick{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;line-height:1.25;border-left:3px solid #fff;padding-left:10px}
+/* вырезанные бутылки: срез снизу уходит за край слайда */
+.cuts{position:absolute;z-index:-1;left:0;right:0;bottom:0;height:60%;display:flex;justify-content:center;align-items:flex-end;filter:drop-shadow(0 20px 30px rgb(0 0 0/.5));pointer-events:none}
+.cuts img{height:100%;width:auto;transform-origin:50% 100%}
+.cuts img:first-child{height:90%;transform:rotate(-7deg) translate(14%,5%)}
+.cuts img:last-child{transform:rotate(5deg) translate(-8%,4%)}
+.row__todo{position:absolute;left:20px;bottom:18px;opacity:.75}
+.dots{position:absolute;left:calc(var(--gut) - 8px);bottom:60px;z-index:2;display:flex}
+.dots button{width:40px;height:44px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.dots button::before{content:"";width:10px;height:10px;background:rgb(255 255 255/.4);transition:background .2s,transform .2s}
+.dots button[aria-current=true]::before{background:#fff;transform:scale(1.25)}
+
+/* ---------- Бегущая строка ---------- */
+.run{background:var(--paper);color:var(--ink);overflow:hidden;height:54px;display:flex;align-items:center;border-bottom:1px solid var(--ink)}
+.run__in{display:flex;flex:none;animation:run 32s linear infinite}
+.run__in span{display:inline-flex;align-items:center;gap:22px;padding-right:22px;white-space:nowrap;font:italic 900 40px/1 var(--fd);text-transform:uppercase}
+.run__in span::after{content:"";width:22px;height:22px;background:var(--ink);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* ---------- О нас ---------- */
+.about__grid{display:grid;gap:36px}
+.about__copy{display:grid;gap:22px;align-content:start}
+.vals{display:grid;border-top:1px solid var(--ink);margin-top:10px}
+.vals li{display:grid;gap:6px 20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--ink)}
+@media (min-width:520px){.vals li{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+.vals b{font:italic 900 34px/.9 var(--fd);text-transform:uppercase}
+.nums{background:#0d0d0d;color:#fff;padding-block:clamp(48px,7vw,104px);position:relative;overflow:hidden}
+.nums__geo{font-size:clamp(44px,8.4vw,128px);color:transparent;-webkit-text-stroke:1.5px rgb(255 255 255/.5);margin-bottom:clamp(28px,5vw,64px)}
+.nums__geo b{color:var(--trix);-webkit-text-stroke:0;font-weight:900}
+.nums__grid{display:grid;gap:28px}
+.num{border-top:1px solid rgb(255 255 255/.28);padding-top:14px}
+.num b{display:block;font-size:clamp(96px,12vw,190px)}
+.num span{display:block;margin-top:6px}
+
+/* ---------- Каталог: шахматная сетка ---------- */
+.cat__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;padding-bottom:clamp(24px,3vw,44px)}
+.row{display:grid;border-top:1px solid var(--ink)}
+.row__art{position:relative;overflow:hidden;isolation:isolate;background:var(--bg);color:var(--fg,#fff);height:min(96vw,460px)}
+.row__art .slide__ghost{font-size:min(60vw,440px);bottom:-.16em;-webkit-text-stroke-color:var(--gs,rgb(255 255 255/.18))}
+.row__info{background:var(--mist);padding:20px var(--gut) 24px;display:grid;grid-template-rows:auto 1fr auto;gap:26px;min-height:340px}
+.row__top{display:flex;justify-content:space-between;gap:20px;color:var(--dim)}
+.row__desc{align-self:center;max-width:44ch;font-size:clamp(16px,1.3vw,19px)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chips li{border:1px solid var(--ink);padding:6px 10px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.chips li.todo{border-style:dashed;border-color:var(--dim)}
+.row__bot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.row__name{font-size:clamp(60px,7.4vw,112px)}
+.row__price{display:block;margin-top:8px;color:var(--dim)}
+
+/* ---------- Лента Instagram ---------- */
+.feed__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;margin-bottom:clamp(24px,3vw,44px)}
+.feed__meta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px}
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.ph{aspect-ratio:1;position:relative;overflow:hidden;display:grid;place-items:center;text-align:center;text-decoration:none;background:var(--bg,var(--mist));color:var(--fg,var(--ink));padding:8px}
+.ph::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-38deg,rgb(128 128 128/.14) 0 18px,transparent 18px 36px)}
+.ph b{position:relative;font:italic 900 clamp(22px,4.4vw,64px)/.86 var(--fd);text-transform:uppercase;transition:transform .35s var(--ease)}
+.ph small{position:absolute;left:8px;right:8px;bottom:8px;font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.ph:hover b{transform:scale(1.08) rotate(-3deg)}
+
+/* ---------- Отзывы ---------- */
+.revs{background:#0d0d0d;color:#fff}
+.revs__grid{display:grid;gap:var(--gap);margin-top:clamp(24px,3vw,44px)}
+.rev{border:1px solid rgb(255 255 255/.28);padding:22px 22px 26px;display:grid;gap:22px;align-content:space-between;min-height:300px;transition:transform .3s var(--ease),border-color .3s}
+.rev:hover{transform:translateY(-6px);border-color:var(--trix)}
+.rev__flag{justify-self:start;background:var(--sun);color:#000;padding:5px 9px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.rev blockquote{margin:0;font-size:18px;line-height:1.45;color:#d0d0d0}
+.rev figcaption{border-top:1px solid rgb(255 255 255/.28);padding-top:14px;font:italic 900 30px/.9 var(--fd);text-transform:uppercase}
+.rev figcaption span{display:block;margin-top:8px;font:700 12px/1.3 var(--fb);letter-spacing:.07em;color:#a8a8a8}
+.revs__note{margin-top:20px;color:#a8a8a8;max-width:60ch}
+
+/* ---------- Как мы работаем ---------- */
+.steps{display:grid;margin-top:clamp(24px,3vw,44px);border-top:1px solid var(--ink)}
+.step{padding:18px 0 26px;border-bottom:1px solid var(--ink);display:grid;gap:10px;align-content:start}
+.step__n{font-size:clamp(96px,11vw,170px);color:transparent;-webkit-text-stroke:2px var(--ink);transition:color .3s}
+.step:hover .step__n{color:var(--trix)}
+.step h3{font:italic 900 38px/.9 var(--fd);text-transform:uppercase}
+.step p{max-width:34ch}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--mist)}
+.faq__grid{display:grid;gap:28px}
+.faq__list{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--ink)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;font:italic 900 clamp(30px,3.4vw,48px)/.92 var(--fd);text-transform:uppercase}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:26px;height:26px;background:linear-gradient(var(--ink) 0 0) center/100% 4px no-repeat,linear-gradient(var(--ink) 0 0) center/4px 100% no-repeat;transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 22px;max-width:60ch;font-size:17px}
+
+/* ---------- Контакты и форма ---------- */
+.contact{background:var(--trix);color:#000}
+.contact__grid{display:grid;gap:36px}
+.contact__copy{display:grid;gap:22px;align-content:start}
+.socials{display:grid;border-top:1px solid #000}
+.socials a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #000;text-decoration:none;font:italic 900 clamp(30px,3.4vw,46px)/.9 var(--fd);text-transform:uppercase;transition:padding .25s var(--ease)}
+.socials a:hover{padding-left:12px}
+.socials small{font:700 12px/1 var(--fb);letter-spacing:.07em}
+.form{background:#000;color:#fff;padding:clamp(20px,3vw,40px);display:grid;gap:18px;align-content:start}
+.form label{display:grid;gap:8px;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.form input,.form textarea{width:100%;background:#000;border:1px solid rgb(255 255 255/.5);color:#fff;padding:14px;font:500 17px/1.3 var(--fb);border-radius:0}
+.form input:focus,.form textarea:focus{border-color:var(--trix);outline:none;box-shadow:0 0 0 2px var(--trix)}
+.form textarea{min-height:120px;resize:vertical}
+.form [hidden]{display:none!important}
+.form fieldset,.form__end{border:0;padding:0;margin:0;min-width:0;display:grid;gap:18px}
+.form__h{font-size:clamp(34px,3.2vw,48px)}
+.form__intro{color:#d0d0d0;max-width:52ch}
+.form__ask{justify-self:start;border:1px solid var(--trix);padding:8px 12px;font-size:13px}
+.form__ask b{color:var(--trix)}
+.fld{display:grid;gap:8px}
+.fld__t{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.form label small{font-weight:500;letter-spacing:0;text-transform:none;color:#b5b5b5;font-size:13px}
+.fgrid{display:grid;gap:18px}
+.opts{display:grid;gap:8px}
+.opt{position:relative}
+.form .opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:pointer}
+.opt span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:54px;padding:8px 12px;border:1px solid rgb(255 255 255/.5);transition:background .2s,color .2s,border-color .2s}
+.opt:hover span{border-color:#fff}
+.opt input:checked+span{background:var(--trix);border-color:var(--trix);color:#000}
+.opt input:focus-visible+span{outline:3px solid #fff;outline-offset:3px}
+.form .check{display:flex;gap:12px;align-items:flex-start;font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;line-height:1.4}
+.form .check input{flex:none;width:22px;height:22px;padding:0;accent-color:var(--trix)}
+.check .todo{color:#b5b5b5}
+.form__btns{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;padding-left:8px}
+.form .box{color:#fff;min-height:64px}
+.form .box:hover{background:#fff;color:#000;border-color:#fff}
+.form__note{font-size:13px;color:#b5b5b5}
+@media (min-width:560px){.opts--3{grid-template-columns:repeat(3,1fr)}.opts--2{grid-template-columns:1fr 1fr}.opts--4{grid-template-columns:repeat(auto-fit,minmax(116px,1fr))}}
+@media (min-width:1180px),(min-width:560px) and (max-width:859px){.fgrid{grid-template-columns:1fr 1fr}.fgrid .wide{grid-column:1/-1}}
+
+/* ---------- Подвал ---------- */
+.ftr{background:#0d0d0d;color:#fff}
+.ftr__grid{display:grid;border-bottom:1px solid rgb(255 255 255/.28)}
+.ftr__col{display:grid;gap:0;align-content:start;padding:24px var(--gut);border-top:1px solid rgb(255 255 255/.28)}
+.ftr__col a{padding:12px 0;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.ftr__col a:hover{color:var(--trix)}
+.ftr__big{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:0 30px;padding:clamp(24px,4vw,56px) var(--gut) 12px}
+.ftr__big b{font-size:clamp(110px,25vw,400px);line-height:.78}
+.ftr__big span{font-size:clamp(34px,6vw,96px);padding-bottom:.1em}
+.ftr__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:14px var(--gut) 22px;color:#a8a8a8}
+
+/* ---------- Появление при прокрутке ---------- */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ---------- Телефон: меню ---------- */
+@media (max-width:859px){
+  .burger{display:block}
+  /* шторка выезжает сверху косым срезом, пункты поднимаются по очереди */
+  .nav{position:fixed;inset:var(--hdr) 0 0;background:#000;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:24px var(--gut) 96px;overflow:hidden;
+    visibility:hidden;clip-path:polygon(0 0,100% 0,100% 0,0 -45%);transition:clip-path .5s var(--ease),visibility 0s .5s}
+  .nav.open{visibility:visible;clip-path:polygon(0 0,100% 0,100% 100%,0 100%);transition:clip-path .6s var(--ease)}
+  .nav::before{content:"";position:absolute;left:0;top:0;height:6px;width:100%;background:var(--trix);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease) .15s}
+  .nav.open::before{transform:scaleX(1)}
+  .nav::after{content:"COLABA";position:absolute;left:-2vw;bottom:-.16em;font:italic 900 46vw/.8 var(--fd);color:transparent;-webkit-text-stroke:1.5px rgb(255 255 255/.16);white-space:nowrap;pointer-events:none;transform:translateX(18%);transition:transform 1.1s var(--ease)}
+  .nav.open::after{transform:none}
+  .nav a{position:relative;z-index:1;opacity:0;transform:translateY(54px) skewY(5deg);transition:opacity .2s,transform .2s}
+  .nav.open a{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .65s var(--ease);transition-delay:calc(.14s + var(--i,0)*.07s)}
+  .nav a:nth-child(2){--i:1}.nav a:nth-child(3){--i:2}.nav a:nth-child(4){--i:3}.nav a:nth-child(5){--i:4}
+  .nav a:not(.btn){font:italic 900 64px/.95 var(--fd);letter-spacing:0;display:flex;align-items:baseline;gap:12px}
+  .nav a:not(.btn)::before{content:"0" counter(nav);counter-increment:nav;font:700 12px/1 var(--fb);letter-spacing:.07em;color:var(--trix);font-style:normal}
+  .nav{counter-reset:nav}
+  .nav a:not(.btn):active{color:var(--trix)}
+  .nav .btn{margin:18px 0 0 8px;min-height:56px;font-size:30px;padding:0 30px;transform:translateY(54px) skewX(-9deg)}
+  .nav.open .btn{transform:skewX(-9deg)}
+}
+/* ---------- Планшет и десктоп ---------- */
+@media (min-width:860px){
+  .hs{padding-inline:var(--gut);scroll-padding-inline:var(--gut)}
+  .slide{height:calc(100svh - var(--hdr) - 64px);flex-basis:calc(100% - 64px);grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);grid-template-rows:auto 1fr auto;column-gap:24px;padding:36px clamp(24px,3.4vw,56px) 44px}
+  .slide__title{font-size:min(11.8vw,27svh);grid-column:1;align-self:center;margin:0}
+  .cuts{left:auto;right:2%;width:46%;height:84%}
+  .slide__photo{left:36%;width:64%;object-position:50% 50%}
+  .slide--photo::before{background:linear-gradient(90deg,var(--bg) 36%,transparent 60%),linear-gradient(0deg,rgb(0 0 0/.45),transparent 35%)}
+  .slide__cta{grid-column:1;margin:0 0 0 8px}
+  .tag{font-size:30px;padding:8px 16px 6px;margin-left:6px}
+  .dots{left:calc(var(--gut)*2 + 24px);bottom:66px}
+  .run{height:64px}.run__in span{font-size:48px}
+  .about__grid,.faq__grid,.contact__grid{grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,90px)}
+  .nums__grid{grid-template-columns:repeat(3,1fr);gap:var(--gut)}
+  .row{grid-template-columns:1fr 1fr}
+  .row__art{height:auto;min-height:clamp(420px,38vw,600px)}
+  .row:nth-child(even) .row__art{order:2}
+  .revs__grid{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink)}
+  .step{border-bottom:0;padding-inline:18px}
+  .step+.step{border-left:1px solid var(--ink)}
+  .step:first-child{padding-left:0}
+  .ftr__grid{grid-template-columns:1fr 1fr 1fr}
+  .ftr__col+.ftr__col{border-left:1px solid rgb(255 255 255/.28)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .run__in{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  *{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#products">К продукции</a>
+
+<header class="hdr">
+  <a class="logo" href="#top" aria-label="COLABA, наверх">COLABA<i>TRIX</i></a>
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню"><span></span><span></span><span></span></button>
+  <nav class="nav" id="nav" aria-label="Разделы">
+    <a href="#about">О нас</a>
+    <a href="#products">Продукция</a>
+    <a href="#how">Как работаем</a>
+    <a href="#faq">Вопросы</a>
+    <a class="btn btn--paper btn--sm" href="#contact"><span>Получить условия</span></a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- 1. Герой: постеры сменяются при прокрутке страницы и свайпом -->
+  <section class="hero" id="hero" aria-roledescription="карусель" aria-label="Линейки COLABA">
+   <div class="hero__pin">
+    <div class="hs" id="hs" tabindex="0">
+      <article class="slide slide--photo" style="--bg:oklch(20% .05 145)" aria-label="Кофейные тоники">
+        <img class="slide__photo" src="img/tonic-lime-mango.jpg" alt="Рука держит бутылку тоника COLABA TRIX «Лайм-манго» на фоне полки с тониками" width="1122" height="950" fetchpriority="high">
+        <p class="tag">18 вкусов · без сахара</p>
+        <h1 class="slide__title d">Кофейные<br>тоники</h1>
+        <div class="slide__cta">
+          <a class="btn btn--paper btn--lg" href="#contact"><span>Получить условия</span></a>
+          <p class="stick">4000+ точек<br>продаж</p>
+        </div>
+      </article>
+      <article class="slide" style="--bg:var(--violet)" aria-label="Новые вкусы тоников">
+        <span class="slide__ghost d" aria-hidden="true">NEW</span>
+        <p class="tag">№17 Ягоды · №18 Лайм-манго</p>
+        <h2 class="slide__title d">Новые<br>вкусы</h2>
+        <div class="cuts" aria-hidden="true">
+          <img src="img/cut-berries.png" alt="" width="344" height="674" loading="lazy">
+          <img src="img/cut-lime-mango.png" alt="" width="346" height="716" loading="lazy">
+        </div>
+        <div class="slide__cta">
+          <a class="btn btn--paper btn--lg" href="#products"><span>Смотреть вкусы</span></a>
+          <p class="stick">Открываем<br>новые регионы</p>
+        </div>
+      </article>
+    </div>
+    <div class="dots" id="dots" role="group" aria-label="Слайды"></div>
+    <div class="run" aria-hidden="true"><div class="run__in" id="run"></div></div>
+   </div>
+  </section>
+
+  <!-- 2. О нас -->
+  <section class="sec wrap" id="about" aria-labelledby="aboutT">
+    <div class="about__grid">
+      <h2 class="h2 d rv" id="aboutT">Кофе.<br>Только<br>холодный.</h2>
+      <div class="about__copy">
+        <p class="lead rv">COLABA делает холодные кофейные напитки: тоники без сахара на натуральном кофейном экстракте, cold brew в стекле и имбирные шоты.</p>
+        <p class="todo rv">[ИСТОРИЯ БРЕНДА: когда и в каком городе начали, кто основал, с чего всё пошло. 2–3 предложения]</p>
+        <ul class="vals rv">
+          <li><b>Без сахара</b><span>Тоники COLABA не содержат сахара.</span></li>
+          <li><b>Натуральный экстракт</b><span>В основе тоников натуральный кофейный экстракт.</span></li>
+          <li><b>Три формата</b><span>Тоник 300 мл, cold brew 250 мл, шот 50 мл.</span></li>
+          <li class="todo"><b>[Ценность]</b><span>[ЧЕМ COLABA ЛУЧШЕ ДРУГИХ: одно предложение своими словами]</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="nums wrap" aria-label="COLABA в цифрах">
+    <p class="nums__geo d rv">Россия <b>/</b> Казахстан <b>/</b> экспорт</p>
+    <div class="nums__grid">
+      <p class="num rv"><b class="d">4000+</b><span class="cap">точек продаж</span></p>
+      <p class="num rv"><b class="d">18</b><span class="cap">вкусов тоников</span></p>
+      <p class="num rv"><b class="d">15</b><span class="cap">действующих дистрибьюторов</span></p>
+    </div>
+  </section>
+
+  <!-- 3. Продукция -->
+  <section class="sec" id="products" aria-labelledby="prodT" style="padding-bottom:0">
+    <div class="cat__head wrap">
+      <h2 class="h2 d rv" id="prodT">Продукция</h2>
+      <p class="lead rv">Четыре линейки. Цены зависят от объёма: пришлём прайс после заявки.</p>
+    </div>
+
+    <article class="row">
+      <div class="row__art row__art--photo" style="--bg:var(--violet)">
+        <img src="img/tonic-berries.jpg" alt="Рука держит бутылку тоника COLABA TRIX «Ягоды» на фоне полки с тониками" width="1122" height="898" loading="lazy">
+      </div>
+      <div class="row__info">
+        <p class="row__top cap"><span>#безсахара</span><span>300 мл</span></p>
+        <div class="row__desc">
+          <p>Холодный кофе с фруктами и ягодами. Натуральный кофейный экстракт, без сахара. В линейке 18 вкусов, два последних новые: «Ягоды» и «Лайм-манго».</p>
+          <ul class="chips"><li>№17 Ягоды</li><li>№18 Лайм-манго</li><li>Арбуз-маракуйя</li><li>Ананас-черника</li><li>Киви-манго</li><li class="todo">[ещё 13 вкусов]</li></ul>
+        </div>
+        <div class="row__bot">
+          <div><h3 class="row__name d">Тоники</h3><span class="row__price cap">[Цена от … ₽]</span></div>
+          <a class="box" href="#contact" data-ask="Тоники">Заказать <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="row__art" style="--bg:#0d0d0d">
+        <span class="slide__ghost d" aria-hidden="true">BREW</span>
+        <p class="row__todo cap">[Фото Cold Brew]</p>
+      </div>
+      <div class="row__info">
+        <p class="row__top cap"><span>#coldbrew</span><span>250 мл · стекло</span></p>
+        <div class="row__desc">
+          <p>Кофе холодного заваривания с ягодами в стеклянной бутылке.</p>
+          <ul class="chips"><li>Малина</li><li>Смородина</li><li>Гранат</li></ul>
+        </div>
+        <div class="row__bot">
+          <div><h3 class="row__name d">Cold Brew</h3><span class="row__price cap">[Цена от … ₽]</span></div>
+          <a class="box" href="#contact" data-ask="Cold Brew">Заказать <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="row">
+      <div class="row__art" style="--bg:var(--violet)">
+        <span class="slide__ghost d" aria-hidden="true">SHOT</span>
+        <p class="row__todo cap">[Фото шота]</p>
+      </div>
+      <div class="row__info">
+        <p class="row__top cap"><span>#наодинглоток</span><span>50 мл</span></p>
+        <div class="row__desc">
+          <p>Имбирный шот с виноградом. Маленькая бутылка, один глоток.</p>
+          <ul class="chips"><li>Виноград</li><li class="todo">[другие вкусы, если есть]</li></ul>
+        </div>
+        <div class="row__bot">
+          <div><h3 class="row__name d">Шоты</h3><span class="row__price cap">[Цена от … ₽]</span></div>
+          <a class="box" href="#contact" data-ask="Имбирные шоты">Заказать <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="row" style="border-bottom:1px solid var(--ink)">
+      <div class="row__art" style="--bg:oklch(30% .09 35)">
+        <span class="slide__ghost d" aria-hidden="true">SNACK</span>
+        <p class="row__todo cap">[Фото снеков]</p>
+      </div>
+      <div class="row__info">
+        <p class="row__top cap"><span>#кнапитку</span><span class="todo">[вес упаковки]</span></p>
+        <div class="row__desc">
+          <p>Сушёное мясо: закуска к холодному кофе и в дорогу.</p>
+          <ul class="chips"><li class="todo">[виды мяса и вкусы]</li><li class="todo">[состав, срок годности]</li></ul>
+        </div>
+        <div class="row__bot">
+          <div><h3 class="row__name d">Снеки</h3><span class="row__price cap">[Цена от … ₽]</span></div>
+          <a class="box" href="#contact" data-ask="Снеки, сушёное мясо">Заказать <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- 4. Лента Instagram: заглушки, заменить на фото -->
+  <section class="sec wrap" id="feed" aria-labelledby="feedT">
+    <div class="feed__head">
+      <h2 class="h2 d rv" id="feedT">@colabatrix</h2>
+      <div class="feed__meta rv">
+        <p class="cap">25 000+ подписчиков<br>в Instagram*</p>
+        <a class="btn" href="https://www.instagram.com/colabatrix" target="_blank" rel="noopener"><span>Подписаться</span></a>
+      </div>
+    </div>
+    <div class="grid9" id="grid9"></div>
+    <p class="todo rv" style="margin-top:16px;font-size:13px">*Instagram принадлежит компании Meta, признанной экстремистской и запрещённой на территории РФ.</p>
+  </section>
+
+  <!-- 5. Отзывы: примеры, заменить настоящими -->
+  <section class="sec revs wrap" id="reviews" aria-labelledby="revT">
+    <h2 class="h2 d rv" id="revT">Отзывы</h2>
+    <div class="revs__grid">
+      <figure class="rev rv">
+        <span class="rev__flag">Пример · заменить</span>
+        <blockquote>[ОТЗЫВ ДИСТРИБЬЮТОРА: с какого года работает с COLABA, в каком регионе, что изменилось в продажах]</blockquote>
+        <figcaption>[Имя Фамилия]<span>[Компания, город]</span></figcaption>
+      </figure>
+      <figure class="rev rv">
+        <span class="rev__flag">Пример · заменить</span>
+        <blockquote>[ОТЗЫВ МАГАЗИНА ИЛИ СЕТИ: как продаётся, какие вкусы берут чаще, как проходит поставка]</blockquote>
+        <figcaption>[Имя Фамилия]<span>[Магазин, город]</span></figcaption>
+      </figure>
+      <figure class="rev rv">
+        <span class="rev__flag">Пример · заменить</span>
+        <blockquote>[ОТЗЫВ ПОКУПАТЕЛЯ: любимый вкус, где покупает, за что выбирает COLABA]</blockquote>
+        <figcaption>[Имя]<span>[Город]</span></figcaption>
+      </figure>
+    </div>
+    <p class="revs__note rv">Это места под настоящие отзывы. Их можно взять из раздела «Отзывы» в актуальном @colabatrix.</p>
+  </section>
+
+  <!-- 6. Как мы работаем -->
+  <section class="sec wrap" id="how" aria-labelledby="howT">
+    <h2 class="h2 d rv" id="howT">Как работаем</h2>
+    <ol class="steps">
+      <li class="step rv"><span class="step__n d" aria-hidden="true">01</span><h3>Заявка</h3><p>Пишете в WhatsApp, Direct или через форму: кто вы, из какого города и что интересует.</p></li>
+      <li class="step rv"><span class="step__n d" aria-hidden="true">02</span><h3>Условия</h3><p>Присылаем прайс, ассортимент и условия для вашего региона.</p></li>
+      <li class="step rv"><span class="step__n d" aria-hidden="true">03</span><h3>Заказ</h3><p class="todo">[КАК ОФОРМЛЯЕТСЯ: договор, оплата, минимальная партия]</p></li>
+      <li class="step rv"><span class="step__n d" aria-hidden="true">04</span><h3>Поставка</h3><p class="todo">[ДОСТАВКА: сроки, транспортные компании, кто оплачивает]</p></li>
+    </ol>
+  </section>
+
+  <!-- 7. FAQ -->
+  <section class="sec faq wrap" id="faq" aria-labelledby="faqT">
+    <div class="faq__grid">
+      <h2 class="h2 d rv" id="faqT">Вопросы</h2>
+      <div class="faq__list rv">
+        <details open><summary>Где вы работаете?</summary><p>Россия, Казахстан и экспорт. COLABA стоит в 4000+ точек продаж, и мы открываем новые регионы.</p></details>
+        <details><summary>Как стать дистрибьютором?</summary><p>Напишите в WhatsApp или Direct и назовите свой город. Пришлём условия дистрибуции. Сейчас с нами работают 15 дистрибьюторов.</p></details>
+        <details><summary>В тониках есть сахар?</summary><p>Нет. Тоники COLABA без сахара, на натуральном кофейном экстракте.</p></details>
+        <details><summary>Какая минимальная партия?</summary><p class="todo">[МИНИМАЛЬНЫЙ ЗАКАЗ: количество упаковок или сумма, отдельно для опта и дистрибуции]</p></details>
+        <details><summary>Где купить COLABA себе?</summary><p class="todo">[ГДЕ КУПИТЬ В РОЗНИЦУ: сети, магазины, города или ссылка на карту точек]</p></details>
+        <details><summary>Как хранить и какой срок годности?</summary><p class="todo">[СРОК ГОДНОСТИ И УСЛОВИЯ ХРАНЕНИЯ по каждой линейке]</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Контакты и форма -->
+  <section class="sec contact wrap" id="contact" aria-labelledby="conT">
+    <div class="contact__grid">
+      <div class="contact__copy">
+        <h2 class="h2 d rv" id="conT">Пишите</h2>
+        <p class="lead rv">Расскажите, кто вы и что нужно. Пришлём прайс и условия.</p>
+        <div class="socials rv">
+          <a href="https://wa.me/79290000941" target="_blank" rel="noopener">WhatsApp<small>+7 929 000-09-41</small></a>
+          <a href="https://www.instagram.com/colabatrix" target="_blank" rel="noopener">Instagram<small>@colabatrix</small></a>
+          <a class="todo" href="#contact" style="color:#1d4d12">[Telegram / email]<small>[добавить]</small></a>
+        </div>
+      </div>
+      <!-- Заявка: направление → (для дистрибуции: тип лица → анкета) → WhatsApp -->
+      <form class="form rv" id="form">
+        <p class="form__h d" id="dirT">Выберите направление сотрудничества</p>
+        <div class="opts opts--3" role="radiogroup" aria-labelledby="dirT">
+          <label class="opt"><input type="radio" name="dir" value="dist" data-t="Дистрибуция и опт" checked><span>Дистрибуция и опт</span></label>
+          <label class="opt"><input type="radio" name="dir" value="partner" data-t="Партнёрство"><span>Партнёрство</span></label>
+          <label class="opt"><input type="radio" name="dir" value="marketing" data-t="Маркетинг и блогеры"><span>Маркетинг и блогеры</span></label>
+        </div>
+        <p class="form__intro" id="formIntro"></p>
+        <p class="form__ask" id="askLine" hidden>Интересует: <b></b></p>
+
+        <fieldset data-pane="dist-1" aria-label="Кто вы">
+          <div class="opts opts--2" role="radiogroup" aria-label="Тип лица">
+            <label class="opt"><input type="radio" name="who" value="legal" checked><span>Юридическое лицо / ИП</span></label>
+            <label class="opt"><input type="radio" name="who" value="person"><span>Физическое лицо</span></label>
+          </div>
+          <div class="form__btns"><button class="btn btn--trix btn--lg" type="button" id="nextBtn"><span>Далее</span></button></div>
+        </fieldset>
+
+        <fieldset data-pane="dist-legal" aria-label="Анкета юридического лица" hidden disabled>
+          <div class="fld"><span class="fld__t" id="countryT">Страна</span>
+            <div class="opts opts--3" role="radiogroup" aria-labelledby="countryT">
+              <label class="opt"><input type="radio" name="country" value="Россия" checked><span>Россия</span></label>
+              <label class="opt"><input type="radio" name="country" value="Казахстан"><span>Казахстан</span></label>
+              <label class="opt"><input type="radio" name="country" value="other"><span>Другая страна</span></label>
+            </div>
+          </div>
+          <label id="countryOther" hidden>Какая страна<input name="countryName" type="text" data-l="Страна" autocomplete="country-name" required disabled></label>
+          <div class="fgrid">
+            <label class="wide">Наименование организации<input type="text" data-l="Организация" autocomplete="organization" required></label>
+            <label>ИНН / БИН<input type="text" data-l="ИНН / БИН" inputmode="numeric" pattern="[0-9]{9,12}" title="От 9 до 12 цифр" required></label>
+            <label>ФИО<input type="text" data-l="ФИО" autocomplete="name" required></label>
+            <label>Телефон<input type="tel" data-l="Телефон" autocomplete="tel" placeholder="+7" required></label>
+            <label>Почта<input type="email" data-l="Почта" autocomplete="email" required></label>
+          </div>
+          <div class="fld"><span class="fld__t" id="prodT">Продукция</span>
+            <div class="opts opts--4" role="group" aria-labelledby="prodT">
+              <label class="opt"><input type="checkbox" name="prod" value="Вся продукция"><span>Вся продукция</span></label>
+              <label class="opt"><input type="checkbox" name="prod" value="Тоники"><span>Тоники</span></label>
+              <label class="opt"><input type="checkbox" name="prod" value="Cold Brew"><span>Cold Brew</span></label>
+              <label class="opt"><input type="checkbox" name="prod" value="Шоты"><span>Шоты</span></label>
+              <label class="opt"><input type="checkbox" name="prod" value="Снеки"><span>Снеки</span></label>
+            </div>
+          </div>
+          <div class="fgrid">
+            <label>Планируемый объём в месяц, шт.<input type="text" data-l="Объём в месяц, шт." inputmode="numeric"><small>Необязательно</small></label>
+            <label>Город<input type="text" data-l="Город" autocomplete="address-level2" required></label>
+            <label class="wide">Комментарий<textarea data-l="Комментарий"></textarea></label>
+          </div>
+        </fieldset>
+
+        <fieldset data-pane="dist-person" aria-label="Анкета физического лица" hidden disabled>
+          <div class="fgrid">
+            <label class="wide">ФИО<input type="text" data-l="ФИО" autocomplete="name" required></label>
+            <label>Телефон<input type="tel" data-l="Телефон" autocomplete="tel" placeholder="+7" required></label>
+            <label>Город<input type="text" data-l="Город" autocomplete="address-level2" required></label>
+            <label class="wide">Комментарий<textarea data-l="Комментарий"></textarea></label>
+          </div>
+        </fieldset>
+
+        <fieldset data-pane="other" aria-label="Анкета партнёра" hidden disabled>
+          <div class="fgrid">
+            <label>ФИО<input type="text" data-l="ФИО" autocomplete="name" required></label>
+            <label>Наименование юр. лица / ИП<input type="text" data-l="Юр. лицо / ИП" autocomplete="organization"></label>
+            <label>Телефон<input type="tel" data-l="Телефон" autocomplete="tel" placeholder="+7" required></label>
+            <label>Почта<input type="email" data-l="Почта" autocomplete="email"></label>
+            <label class="wide">Ник Telegram<input type="text" data-l="Telegram" placeholder="@"></label>
+            <label class="wide">Комментарий<textarea data-l="Комментарий"></textarea><small>Коммерческое предложение можно прислать файлом в чат после отправки.</small></label>
+          </div>
+        </fieldset>
+
+        <div class="form__end" id="formEnd" hidden>
+          <label class="check"><input type="checkbox" name="policy" required><span>Я даю согласие на обработку персональных данных в соответствии с <span class="todo">[политикой конфиденциальности]</span></span></label>
+          <div class="form__btns">
+            <button class="box" type="button" id="backBtn" hidden>Назад</button>
+            <button class="btn btn--trix btn--lg" type="submit"><span>Отправить</span></button>
+          </div>
+          <p class="form__note" id="formNote" aria-live="polite">Кнопка откроет WhatsApp с готовой анкетой. Останется нажать «Отправить» в чате.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- 9. Подвал -->
+<footer class="ftr">
+  <div class="ftr__grid">
+    <div class="ftr__col"><a href="#about">О нас</a><a href="#products">Продукция</a><a href="#how">Как работаем</a><a href="#faq">Вопросы</a></div>
+    <div class="ftr__col"><a href="https://www.instagram.com/colabatrix" target="_blank" rel="noopener">Instagram @colabatrix</a><a href="https://wa.me/79290000941" target="_blank" rel="noopener">WhatsApp +7 929 000-09-41</a></div>
+    <div class="ftr__col"><a href="#contact">Стать партнёром</a><span class="cap todo" style="color:#a8a8a8">[Политика конфиденциальности]</span></div>
+  </div>
+  <p class="ftr__big"><b class="d">COLABA</b><span class="d">Coffee drinks &amp; more</span></p>
+  <div class="ftr__base cap"><span>© <span id="year">2026</span> COLABA</span><span>[Юр. лицо, ИНН]</span></div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+var WA='79290000941',IG='https://www.instagram.com/colabatrix',POST=IG+'/p/DeWG6dlDcNL/';
+
+/* Бегущая строка: набор фраз повторяется, чтобы лента шла без шва */
+var words=['Coffee drinks & more','18 вкусов тоников','Без сахара','Россия · Казахстан · экспорт','Открываем новые регионы'];
+var half=words.concat(words).map(function(w){return '<span>'+w+'</span>';}).join('');
+$('#run').innerHTML=half+half;
+
+/* Лента: 9 заглушек по темам актуального в @colabatrix. Чтобы поставить фото, добавьте img: 'путь'. */
+var feed=[
+ {t:'Тоник «Лайм-манго»',img:'img/feed-lime-mango.jpg',href:POST},{t:'Тоник «Ягоды»',img:'img/feed-berries.jpg',href:POST},{t:'Битва дистрибьюторов',img:'img/feed-battle.jpg',href:POST},
+ {t:'Короли торговли',bg:'var(--mist)',fg:'#000'},{t:'Конкурс фото',bg:'var(--rasp)',fg:'#fff'},{t:'100% Enduro',bg:'#0d0d0d',fg:'#fff'},
+ {t:'Отзывы',bg:'var(--green)',fg:'#fff'},{t:'Наш товар',bg:'var(--mist)',fg:'#000'},{t:'Эстетика',bg:'var(--violet)',fg:'#fff'}
+];
+$('#grid9').innerHTML=feed.map(function(f,i){
+  var inner=f.img?'<img src="'+f.img+'" alt="'+f.t+': публикация COLABA" loading="lazy" width="800" height="800">':'<b>'+f.t+'</b><small>[Фото '+(i+1)+']</small>';
+  return '<a class="ph rv" href="'+(f.href||IG)+'" target="_blank" rel="noopener" style="--bg:'+f.bg+';--fg:'+f.fg+'" aria-label="'+f.t+': открыть Instagram @colabatrix">'+inner+'</a>';
+}).join('');
+
+/* Слайдер героя */
+var hs=$('#hs'),slides=$$('.slide',hs),dots=$('#dots'),cur=0;
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function pad(){return parseFloat(getComputedStyle(hs).paddingLeft)||0;}
+function go(i){cur=(i+slides.length)%slides.length;hs.scrollTo({left:slides[cur].offsetLeft-pad(),behavior:calm?'auto':'smooth'});mark();}
+function mark(){$$('button',dots).forEach(function(b,i){b.setAttribute('aria-current',i===cur?'true':'false');});}
+slides.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Слайд '+(i+1)+': '+s.getAttribute('aria-label'));b.onclick=function(){go(i);};dots.appendChild(b);});
+mark();
+hs.addEventListener('scroll',function(){var x=hs.scrollLeft+pad(),best=0,d=1e9;slides.forEach(function(s,i){var k=Math.abs(s.offsetLeft-x);if(k<d){d=k;best=i;}});if(best!==cur){cur=best;mark();}},{passive:true});
+hs.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
+/* Смена слайдов прокруткой: герой закреплён, доля пройденного «запаса» выбирает слайд */
+var hero=$('#hero'),pin=$('.hero__pin'),byScroll=0,tick=false;
+hero.style.setProperty('--n',slides.length);
+function onScroll(){
+  tick=false;
+  var travel=hero.offsetHeight-pin.offsetHeight;if(travel<=0)return;
+  var p=Math.min(1,Math.max(0,-hero.getBoundingClientRect().top/travel));
+  var i=Math.min(slides.length-1,Math.floor(p*slides.length));
+  if(i!==byScroll){byScroll=i;go(i);}
+}
+addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll);}},{passive:true});
+addEventListener('resize',function(){hs.scrollTo({left:slides[cur].offsetLeft-pad(),behavior:'auto'});});
+
+/* Меню на телефоне */
+var burger=$('#burger'),nav=$('#nav');
+function menu(open){nav.classList.toggle('open',open);burger.setAttribute('aria-expanded',open);document.body.style.overflow=open?'hidden':'';}
+burger.onclick=function(){menu(!nav.classList.contains('open'));};
+nav.addEventListener('click',function(e){if(e.target.closest('a'))menu(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')menu(false);});
+
+/* «Заказать» у линейки подставляет её в сообщение */
+var form=$('#form'),note=$('#formNote');
+var ask='',askLine=$('#askLine');
+$$('[data-ask]').forEach(function(a){a.addEventListener('click',function(){ask=a.dataset.ask;$('b',askLine).textContent=ask;askLine.hidden=false;});});
+
+/* Шаги формы: направление → для дистрибуции тип лица → анкета. Скрытые блоки отключены, чтобы не мешать проверке. */
+var INTRO={
+  dist:'Ответьте на несколько вопросов, и мы пришлём условия дистрибуции и оптовый прайс для вашего региона.',
+  partner:'Сети, магазины, кафе, совместные проекты. Расскажите о себе, и мы предложим формат.',
+  marketing:'Блогерам, агентствам и площадкам: оставьте контакты и коротко опишите идею.'
+};
+var step=1,panes=$$('[data-pane]',form),end=$('#formEnd'),back=$('#backBtn'),cOther=$('#countryOther');
+function val(n){var r=$('input[name='+n+']:checked',form);return r?r.value:'';}
+function pane(){var d=val('dir');return d!=='dist'?'other':step===1?'dist-1':'dist-'+val('who');}
+function render(){
+  var cur=pane();
+  panes.forEach(function(p){var on=p.dataset.pane===cur;p.hidden=!on;p.disabled=!on;});
+  end.hidden=cur==='dist-1';form.elements.policy.disabled=end.hidden;
+  back.hidden=!(val('dir')==='dist'&&step===2);
+  $('#formIntro').textContent=INTRO[val('dir')];
+  var other=val('country')==='other';cOther.hidden=!other;$('input',cOther).disabled=!other;
+}
+form.addEventListener('change',function(e){if(e.target.name==='dir')step=1;render();});
+$('#nextBtn').onclick=function(){step=2;render();var f=$('[data-pane="'+pane()+'"] input:not([type=radio])',form);if(f)f.focus();};
+back.onclick=function(){step=1;render();};
+render();
+
+/* Отправка: собирает анкету и открывает WhatsApp */
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(pane()==='dist-1'){step=2;render();return;}
+  var cur=$('[data-pane="'+pane()+'"]',form),L=['Здравствуйте! Заявка с сайта COLABA.','Направление: '+$('input[name=dir]:checked',form).dataset.t];
+  if(val('dir')==='dist')L.push('Тип: '+(val('who')==='legal'?'юридическое лицо / ИП':'физическое лицо'));
+  if(pane()==='dist-legal'&&val('country')!=='other')L.push('Страна: '+val('country'));
+  $$('[data-l]',cur).forEach(function(i){var v=i.value.trim();if(v&&!i.disabled)L.push(i.dataset.l+': '+v);});
+  var pr=$$('input[name=prod]:checked',cur).map(function(i){return i.value;});
+  if(pr.length)L.push('Продукция: '+pr.join(', '));
+  if(ask)L.push('Интересует: '+ask);
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(L.join('\n')),'_blank','noopener');
+  note.textContent='WhatsApp открыт. Нажмите «Отправить» в чате, и мы получим анкету.';
+});
+
+/* Появление блоков */
+var rv=$$('.rv');
+if('IntersectionObserver' in window&&!calm){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px'});
+  rv.forEach(function(el,i){el.style.transitionDelay=(i%3)*70+'ms';io.observe(el);});
+}else rv.forEach(function(el){el.classList.add('in');});
+
+$('#year').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
