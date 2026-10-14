@@ -295,12 +295,6 @@ button,input,textarea{font:inherit;color:inherit}
   .ftr__grid{grid-template-columns:1fr 1fr 1fr}
   .ftr__col+.ftr__col{border-left:1px solid rgb(255 255 255/.28)}
 }
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .run__in{animation:none}
-  .js .rv{opacity:1;transform:none;transition:none}
-  *{transition-duration:.01ms!important}
-}
 </style>
 </head>
 <body>
@@ -649,9 +643,8 @@ $('#grid9').innerHTML=feed.map(function(f,i){
 
 /* Слайдер героя */
 var hs=$('#hs'),slides=$$('.slide',hs),dots=$('#dots'),cur=0;
-var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function pad(){return parseFloat(getComputedStyle(hs).paddingLeft)||0;}
-function go(i){cur=(i+slides.length)%slides.length;hs.scrollTo({left:slides[cur].offsetLeft-pad(),behavior:calm?'auto':'smooth'});mark();}
+function go(i){cur=(i+slides.length)%slides.length;hs.scrollTo({left:slides[cur].offsetLeft-pad(),behavior:'smooth'});mark();}
 function mark(){$$('button',dots).forEach(function(b,i){b.setAttribute('aria-current',i===cur?'true':'false');});}
 slides.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Слайд '+(i+1)+': '+s.getAttribute('aria-label'));b.onclick=function(){go(i);};dots.appendChild(b);});
 mark();
@@ -721,7 +714,7 @@ form.addEventListener('submit',function(e){
 
 /* Появление блоков */
 var rv=$$('.rv');
-if('IntersectionObserver' in window&&!calm){
+if('IntersectionObserver' in window){
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px'});
   rv.forEach(function(el,i){el.style.transitionDelay=(i%3)*70+'ms';io.observe(el);});
 }else rv.forEach(function(el){el.classList.add('in');});
